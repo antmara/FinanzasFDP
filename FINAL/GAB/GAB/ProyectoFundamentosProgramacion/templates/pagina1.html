@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Deudas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: #ecf0f1;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #bdc3c7;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #dff9fb;
+            border-radius: 4px;
+            color: #34495e;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculadora de Deudas Inteligente</h1>
+    <div class="container">
+        <label for="debt">Monto total de la deuda (S/):</label>
+        <input type="number" id="debt" placeholder="Ej. 5000">
+
+        <label for="rate">Tasa de interés anual (%):</label>
+        <input type="number" id="rate" placeholder="Ej. 10">
+
+        <label for="payment">Pago mensual disponible (S/):</label>
+        <input type="number" id="payment" placeholder="Ej. 500">
+
+        <button onclick="calcularDeuda()">Calcular</button>
+
+        <div id="result" class="result">
+            <p>Los resultados aparecerán aquí.</p>
+        </div>
+    </div>
+
+    <script>
+        function calcularDeuda() {
+            const deuda = document.getElementById('debt').value; // Monto de la deuda
+            const interes = document.getElementById('rate').value; // Tasa de interés
+            const pago = document.getElementById('payment').value; // Pago mensual
+
+            if (!deuda || !interes || !pago) {
+                document.getElementById('result').innerHTML = '<p>Por favor, completa todos los campos.</p>';
+                return;
+            }
+
+            const deudaInicial = parseFloat(deuda);
+            const tasaMensual = parseFloat(interes) / 100 / 12; // Tasa de interés mensual
+            const pagoMensual = parseFloat(pago);
+
+            if (pagoMensual <= deudaInicial * tasaMensual) {
+                document.getElementById('result').innerHTML = '<p>El pago mensual no cubre los intereses. Intenta aumentar el monto.</p>';
+                return;
+            }
+
+            let meses = 0;
+            let deudaRestante = deudaInicial;
+
+            while (deudaRestante > 0) {
+                deudaRestante += deudaRestante * tasaMensual; // Sumar intereses
+                deudaRestante -= pagoMensual; // Restar el pago
+                meses++;
+            }
+
+            document.getElementById('result').innerHTML = `<p>Te tomará ${meses} meses pagar la deuda.</p>`;
+        }
+    </script>
+</body>
+</html>

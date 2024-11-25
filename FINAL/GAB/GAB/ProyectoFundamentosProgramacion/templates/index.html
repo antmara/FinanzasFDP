@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dinero Consciente: Aprende, Ahorra y Crece</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: linear-gradient(to right, #8d6e63, #d7ccc8);
+            color: #fff;
+            text-align: center;
+            padding: 80px 20px;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 50px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .cta-button {
+            background-color: #6d4c41;
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #5d4037;
+        }
+
+        #carousel {
+            position: relative;
+            margin: 40px auto;
+            max-width: 800px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel-container {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+            border-radius: 10px;
+        }
+
+        .carousel-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        .carousel-navigation button {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 18px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+
+        #prev {
+            left: 10px;
+        }
+
+        #next {
+            right: 10px;
+        }
+
+        .carousel-navigation button:hover {
+            background-color: #6d4c41;
+        }
+
+        /* Consejos */
+
+        #consejos-ahorro {
+            background-color: #fdf5e6;
+            padding: 40px 20px;
+            text-align: center;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tips-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .tip-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            padding: 20px;
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .tip-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 15px;
+        }
+
+        .tip-card h3 {
+            color: #6d4c41;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .tip-card p {
+            color: #5d4037;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        /* Carrusel 2 */
+
+        .carol {
+            display: flex;
+            overflow: hidden;
+            max-width: 100%;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .carol img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        /* Calculadora */
+
+        #calculadora {
+            background-color: #f8f3ed;
+            padding: 40px 20px;
+            margin: 20px auto;
+            border-radius: 100px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .calculator-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: flex-start;
+            gap: 50px;
+        }
+
+        .calculator-inputs {
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .calculator-inputs label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 16px;
+            color: #5d4037;
+            text-align: left;
+        }
+
+        .calculator-inputs input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #d7ccc8;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #fff;
+        }
+
+        .calculator-inputs button {
+            background-color: #a1887f;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .calculator-inputs button:hover {
+            background-color: #8d6e63;
+        }
+
+        .calculator-result {
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+            color: #5d4037;
+        }
+
+        /* Pie de Página */
+
+        footer {
+            background: #6d4c41;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Encabezado -->
+    <header>
+        <div class="header-content">
+            <h1 class="main-title">Dinero Consciente</h1>
+            <p class="tagline">Tu guía para aprender, ahorrar y crecer financieramente</p>
+            <button type="button" onclick="window.location.href='/pagina1'">¡Realiza tu calculadora de deudas!</button>
+        </div>
+    </header>
+
+   <!-- Carrusel de imágenes -->
+    <section id="carousel">
+        <div class="carousel-container">
+            <div class="carousel-slide">
+                <img src="{{ url_for('static', filename='img/slide1.jpg') }}">
+                <div class="carousel-caption">
+                    <h3>Educación Financiera</h3>
+                    <p>Domina el arte de manejar tus finanzas</p>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="{{ url_for('static', filename='img/slide2.jpg') }}">
+                <div class="carousel-caption">
+                    <h3>Ahorro Inteligente</h3>
+                    <p>Optimiza tus gastos y alcanza tus metas</p>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="{{ url_for('static', filename='img/slide3.jpg') }}">
+                <div class="carousel-caption">
+                    <h3>Inversiones Seguras</h3>
+                    <p>Haz crecer tu dinero de forma eficiente</p>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-navigation">
+            <button id="prev">❮</button>
+            <button id="next">❯</button>
+        </div>
+    </section>
+
+    <!-- Consejos -->
+
+    <section id="consejos-ahorro">
+        <h2 class="section-title">Consejos de Ahorro Inteligente</h2>
+        <p>Aprende estrategias efectivas para optimizar tus finanzas y alcanzar tus metas rápidamente.</p>
+
+        <div class="tips-container">
+            <!-- Consejo 1 -->
+            <div class="tip-card">
+                <img src="{{ url_for('static', filename='img/consejo1.jpg') }}" alt="Presupuesto mensual" class="tip-image">
+                <h3>1. Establece un Presupuesto</h3>
+                <p>Registra tus ingresos y gastos mensualmente para tener control absoluto sobre tus finanzas.</p>
+            </div>
+
+            <!-- Consejo 2 -->
+            <div class="tip-card">
+                <img src="{{ url_for('static', filename='img/consejo2.jpg') }}" alt="Presupuesto mensual" class="tip-image">
+                <h3>2. Define Metas Financieras</h3>
+                <p>Establece metas claras y alcanzables para motivarte a ahorrar con propósito.</p>
+            </div>
+
+            <!-- Consejo 3 -->
+            <div class="tip-card">
+                <img src="{{ url_for('static', filename='img/consejo3.jpg') }}" alt="Presupuesto mensual" class="tip-image">
+                <h3>3. Elimina Gastos Innecesarios</h3>
+                <p>Revisa tus suscripciones y hábitos de compra para optimizar tus gastos.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carrusel 2 -->
+
+    <section id="carrusel2">
+        <h2 class="section-title">Tu futuro financiero comienza aquí</h2>
+        <div class="carol">
+            <img src="{{ url_for('static', filename='img/carrusel1.jpg') }}">
+            <img src="{{ url_for('static', filename='img/carrusel2.jpg') }}">
+            <img src="{{ url_for('static', filename='img/carrusel3.jpg') }}">
+        </div>
+    </section>
+
+        <!-- Calculadora -->
+
+    <section id="calculadora">
+    <h2 class="section-title">Calculadora de Ahorros</h2>
+    <p>Descubre cuánto puedes ahorrar ajustando tus hábitos financieros. Ingresa los datos y planifica tus metas.</p>
+    <div class="calculator-container">
+        <form action="/calcular_ahorros" method="POST" class="calculator-inputs">
+            <!-- ingresos mensuales -->
+            <label for="income">Ingreso mensual (S/):</label>
+            <input type="number" id="income" name="income" placeholder="Ej. 2500" required>
+
+            <!-- gastos mensuales -->
+            <label for="expenses">Gastos mensuales (S/):</label>
+            <input type="number" id="expenses" name="expenses" placeholder="Ej. 1800" required>
+
+            <!-- meta de ahorro -->
+            <label for="savings-goal">Meta de ahorro (S/):</label>
+            <input type="number" id="savings-goal" name="savings_goal" placeholder="Ej. 10000" required>
+
+            <!-- Botón -->
+            <button type="submit">Calcular</button>
+        </form>
+
+        <!-- Resultado -->
+        <div class="calculator-result" id="result">
+            {% if resultado %}
+                <p>{{ resultado }}</p>
+            {% else %}
+                <p>Los resultados aparecerán aquí.</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+    <!-- Pie de Página -->
+
+    <footer>
+        <div class="footer-container">
+            <p>© 2024 Dinero Consciente. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    <script>
+        const slides = document.querySelectorAll(".carousel-slide");
+        const prevButton = document.getElementById("prev");
+        const nextButton = document.getElementById("next");
+
+        let currentIndex = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.display = i === index ? "block" : "none";
+            });
+        }
+
+        prevButton.addEventListener("click", () => {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            showSlide(currentIndex);
+        });
+
+        nextButton.addEventListener("click", () => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            showSlide(currentIndex);
+        });
+
+        showSlide(currentIndex);
+
+    </script>
+</body>
+</html>
